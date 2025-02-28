@@ -52,16 +52,25 @@ class MyHomePage extends StatelessWidget {
                       title: Text(
                         snapshot.data![index].nama ,
                         style: const TextStyle(fontWeight: FontWeight.bold),),
-                      // subtitle: Column(
-                      //   crossAxisAlignment: CrossAxisAlignment.start,
-                      //   children: [
-                      //     Text(snapshot.data![index].umur)
-                      //   ],
-                      // )
+                        subtitle : Column(
+                          crossAxisAlignment :CrossAxisAlignment.start,
+                          children : [
+                            Text('umur : ${snapshot.data![index].umur}'),
+                            'Alamat : ${snapshot.data![index].alamat.jalan}, ${snapshot.data![index].alamat.kota} , ${snapshot.data![index].alamat.provinsi}')
+                          ],
+                        )
+                      
                       ),
                     );
                   });
+            } else if(snapshot.hasError) {
+              return Center (
+                child : Text('${snapshot.error}'),
+              );
             }
+            return const Center(
+              child : CircularProgressIndicator(),
+            );
           }),
     );
   }
